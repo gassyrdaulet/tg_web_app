@@ -31,7 +31,7 @@ export default function Newpriceform() {
     <div>
       <div className="horizontal">
         <MyInput {...nameProps} type="text" />
-        <ErrorList>{name.errorText}</ErrorList>
+        <ErrorList>{name.isDirty ? name.errorText : ""}</ErrorList>
       </div>
     </div>
   );
