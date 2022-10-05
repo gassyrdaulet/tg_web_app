@@ -1,5 +1,5 @@
 import axios from "axios";
-const serverURL = "https://167.172.103.103:2222";
+const serverURL = "https://jackmarket.kz:2222";
 
 export const getAllPrices = async (fromId) => {
   const { data } = await axios.post(serverURL, {
