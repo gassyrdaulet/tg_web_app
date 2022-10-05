@@ -3,8 +3,7 @@ import { useValidation } from "./useValidation";
 
 export const useInput = (initialValue, validations, limiter) => {
   const [value, setValue] = useState(initialValue);
-  const [isDirty, setDirty] = useState(false);
-  const valid = useValidation(value, validations);
+  const [isDirty, setIsDirty] = useState(false);
 
   const onChange = (e) => {
     let temp = "";
@@ -45,8 +44,10 @@ export const useInput = (initialValue, validations, limiter) => {
   };
 
   const onBlur = (e) => {
-    setDirty(true);
+    setIsDirty(true);
   };
+
+  const valid = useValidation(value, validations);
 
   return {
     props: {
@@ -57,6 +58,6 @@ export const useInput = (initialValue, validations, limiter) => {
     },
     isDirty,
     ...valid,
-    setDirty,
+    setIsDirty,
   };
 };

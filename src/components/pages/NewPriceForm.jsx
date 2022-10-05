@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import cl from "./styles/newpriceform.module.css";
 import { useInput } from "../../hooks/useInput";
 import MyInput from "../UI/inputs/MyInput";
@@ -20,12 +20,12 @@ export default function Newpriceform() {
   }, []);
 
   useEffect(() => {
-    if (nameProps.isInvalid) {
+    if (!nameProps.value.length === 0 || name.inValid) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
     }
-  }, [nameProps.value]);
+  }, [nameProps.value, name.inValid]);
 
   return (
     <div>
