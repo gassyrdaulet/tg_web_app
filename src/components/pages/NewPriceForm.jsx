@@ -20,7 +20,7 @@ export default function Newpriceform() {
   }, []);
 
   useEffect(() => {
-    if (name.inValid) {
+    if (nameProps.isInvalid) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
