@@ -44,7 +44,6 @@ export default function Price({ data, index }) {
         </div>
       </div>
       <div className={cl.horizontaltwo}>
-        {console.log(data)}
         <div className={cl.pp}>
           <p className={cl.hint}>PP:</p>
           <p
