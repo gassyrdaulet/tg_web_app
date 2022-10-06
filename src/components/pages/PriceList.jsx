@@ -10,6 +10,7 @@ export default function Pricelist() {
   const [prices, setPrices] = useState([]);
   const [checkedPrices, setCheckedPrices] = useState([]);
   const [markAll, setMarkAll] = useState(false);
+  const [markedSum, setMarkedSum] = useState(0);
 
   const fetchPrices = async () => {
     try {
@@ -60,6 +61,9 @@ export default function Pricelist() {
   };
 
   useEffect(() => {
+    fetchPrices();
+  }, []);
+  useEffect(() => {
     const temp = [];
     for (let i in prices) {
       temp[i] = false;
@@ -67,16 +71,16 @@ export default function Pricelist() {
     setCheckedPrices(temp);
   }, [prices]);
   useEffect(() => {
-    fetchPrices();
-  }, []);
-  useEffect(() => {
+    let temp = 0;
+    let isThereFalse = false;
     for (let i in checkedPrices) {
       if (checkedPrices[i] === false) {
-        setMarkAll(false);
-        break;
+        isThereFalse = true;
       } else {
-        setMarkAll(true);
+        temp++;
       }
+      isThereFalse ? setMarkAll(false) : setMarkAll(true);
+      setMarkedSum(temp);
     }
   }, [checkedPrices]);
 
@@ -100,6 +104,7 @@ export default function Pricelist() {
         markCheck={markCheck}
         checkedPrices={checkedPrices}
         data={prices}
+        markedSum={markedSum}
       />
     </div>
   );
