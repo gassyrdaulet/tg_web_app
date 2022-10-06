@@ -36,6 +36,7 @@ export default function Pricelist() {
       maxWidth: 88,
       maxWHight: 38,
       fontSize: 11,
+      background: "white",
       border: "1px solid #c0c0c0",
       borderRadius: "5px",
       cursor: "pointer",

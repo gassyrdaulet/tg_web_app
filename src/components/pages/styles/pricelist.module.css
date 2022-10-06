@@ -19,6 +19,7 @@
   align-items: center;
 }
 .checkall p {
+  margin-left: 3px;
   text-align: center;
 }
 .sortselect {
