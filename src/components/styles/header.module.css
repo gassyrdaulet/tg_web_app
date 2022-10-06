@@ -97,6 +97,3 @@
 .closebutton::after {
   transform: rotate(-45deg);
 }
-.searchinput {
-  margin-bottom: 5px;
-}
