@@ -1,0 +1,26 @@
+.PriceList {
+  width: 90%;
+  margin: 0 auto;
+  color: var(--tg-theme-secondary-hint-color);
+  font-size: 11px;
+}
+.horizontaltwo {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkall {
+  display: flex;
+  align-items: center;
+}
+.checkall > * {
+  margin-right: 5px;
+}
+.sortselect {
+  display: flex;
+  flex-direction: row;
+}

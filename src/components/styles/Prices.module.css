@@ -5,6 +5,14 @@
   width: 90%;
   background: var(--tg-theme-secondary-bg-color);
 }
+.resultsum {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: var(--tg-theme-hint-color);
+  /* color: #c0c0c0; */
+  margin-bottom: 10px;
+}
 .extraplace {
   color: transparent;
   width: 100%;
