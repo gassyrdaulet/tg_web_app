@@ -9,8 +9,8 @@
   padding: 0 20px;
   z-index: 100;
   background: var(--tg-theme-bg-color);
-  border-bottom: 1px solid var(--tg-theme-hint-color);
-  /* border-bottom: 1px solid #cccccc; */
+  /* border-bottom: 1px solid var(--tg-theme-hint-color); */
+  border-bottom: 1px solid #cccccc;
   color: var(--tg-theme-text-color);
   font-size: 20px;
   font-weight: 600;
@@ -61,4 +61,39 @@
   transform: rotate(-45deg);
   top: 10px;
   left: 12px;
+}
+.closebutton {
+  position: absolute;
+  bottom: 28px;
+  left: 87%;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 40px;
+}
+.closebutton::after,
+.closebutton::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: var(--tg-theme-text-color);
+  /* background: red; */
+  transform: rotate(45deg);
+  border-radius: 5px;
+  top: 8px;
+  left: 1px;
+}
+.closebutton::after {
+  transform: rotate(-45deg);
 }

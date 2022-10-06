@@ -1,0 +1,21 @@
+.MyInput {
+  border-radius: 2px;
+  border: none;
+  user-select: none;
+  height: 100%;
+  width: 60%;
+  max-width: 400px;
+  background: transparent;
+  color: var(--tg-theme-text-color);
+  border-bottom: 1px solid var(--tg-theme-text-color);
+  /* border-bottom: 1px solid red; */
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.MyInput:hover {
+  border-bottom: 1px solid var(--tg-theme-text-color);
+}
+.MyInput:focus {
+  border-bottom: 1px solid var(--tg-theme-text-color);
+  outline: none;
+}
