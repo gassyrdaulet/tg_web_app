@@ -1,10 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  font-family: "Inter", sans-serif;
+}
+
 body {
+  margin-top: 50px;
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
 }
@@ -13,4 +20,9 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+}
+.textcenter {
+  width: 100%;
+  text-align: center;
 }

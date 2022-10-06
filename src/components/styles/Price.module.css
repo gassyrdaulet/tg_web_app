@@ -1,0 +1,106 @@
+.Price {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 210px;
+  background: var(--tg-theme-bg-color);
+  border-radius: 20px;
+  margin-bottom: 8px;
+  padding: 20px 10px;
+  color: var(--tg-theme-text-color);
+  font-size: 20px;
+  font-weight: 600;
+  border: 2px solid transparent;
+}
+.checked {
+  border: 2px solid rgb(32, 103, 255);
+}
+.Price > * {
+  margin-bottom: 8px;
+}
+.Prices * {
+  user-select: none;
+}
+.horizontalthree {
+  display: flex;
+  align-items: center;
+}
+.horizontalthree > * {
+  width: 33.3%;
+  display: flex;
+  justify-content: center;
+}
+.horizontalthree div:nth-child(1) {
+  justify-content: flex-start;
+}
+.horizontalthree div:nth-child(2) {
+  justify-content: center;
+}
+.horizontalthree div:nth-child(3) {
+  justify-content: flex-end;
+}
+.horizontaltwo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.hint {
+  color: var(--tg-theme-hint-color);
+}
+.index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.index > * {
+  margin-right: 4px;
+}
+.sku {
+  width: 100%;
+  text-align: center;
+}
+.sku a {
+  color: var(--tg-theme-link-color);
+  text-decoration: none;
+}
+.model {
+  width: 100%;
+  text-align: center;
+  min-height: 48px;
+  height: 48px;
+  max-height: 48px;
+  overflow: hidden;
+}
+.cost {
+  display: flex;
+  flex-direction: column;
+}
+.cost > * {
+  text-align: center;
+  font-size: 11px;
+}
+.pp {
+  font-size: 11px;
+  display: flex;
+  flex-direction: row;
+}
+.pp > * {
+  margin-right: 5px;
+}
+.ppgreen {
+  color: #46d614;
+}
+.ppred {
+  color: #ff5c5c;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+.buttons > * {
+  margin-left: 10px;
+  width: 50px;
+  font-size: 11px;
+  padding: 5px;
+}

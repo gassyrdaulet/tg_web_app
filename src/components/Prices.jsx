@@ -1,12 +1,12 @@
 import React from "react";
+import Price from "./Price";
+import cl from "./styles/Prices.module.css";
 
 export default function ({ data }) {
   return (
-    <div>
+    <div className={cl.Prices}>
       {data.map((price, index) => (
-        <div key={price.id}>
-          {price.suk} {price.model}
-        </div>
+        <Price key={price.id} data={price} index={index} />
       ))}
     </div>
   );
