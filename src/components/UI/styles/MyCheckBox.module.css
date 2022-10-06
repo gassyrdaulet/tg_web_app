@@ -44,6 +44,7 @@
   border: 2px solid transparent;
   border-radius: 100px;
   visibility: hidden;
+  z-index: 1;
 }
 .RoundCheckBox::after {
   content: "";
@@ -60,6 +61,7 @@
   transform-origin: bottom left;
   transform: rotate(45deg);
   visibility: hidden;
+  z-index: 1;
 }
 .CheckBox input:checked + .RoundCheckBox::before {
   visibility: visible;
