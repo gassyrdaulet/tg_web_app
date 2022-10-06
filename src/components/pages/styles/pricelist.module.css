@@ -1,8 +1,9 @@
 .PriceList {
   width: 90%;
   margin: 0 auto;
-  color: var(--tg-theme-secondary-hint-color);
   font-size: 11px;
+  user-select: none;
+  color: var(--tg-theme-hint-color);
 }
 .horizontaltwo {
   width: 90%;
@@ -17,10 +18,13 @@
   display: flex;
   align-items: center;
 }
-.checkall > * {
-  margin-right: 5px;
+.checkall p {
+  text-align: center;
 }
 .sortselect {
   display: flex;
   flex-direction: row;
+}
+.sortselect > * {
+  margin-left: 5px;
 }
