@@ -8,6 +8,7 @@ export default function ({ data }) {
       {data.map((price, index) => (
         <Price key={price.id} data={price} index={index} />
       ))}
+      <div className={cl.extraplace} />
     </div>
   );
 }
