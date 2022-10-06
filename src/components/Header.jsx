@@ -7,7 +7,7 @@ export default function header() {
   return (
     <div className={cl.header}>
       <span className={cl.username}>
-        {user ? user.username : "Пользователь"}
+        <p>{user ? user.username : "Пользователь"}</p>
         <div className={cl.searchButton} />
       </span>
     </div>
