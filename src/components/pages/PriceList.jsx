@@ -8,6 +8,8 @@ import Select from "react-select";
 
 export default function Pricelist() {
   const [prices, setPrices] = useState([]);
+  const [checkedPrices, setCheckedPrices] = useState([]);
+  const [markAll, setMarkAll] = useState(false);
 
   const fetchPrices = async () => {
     try {
@@ -15,6 +17,19 @@ export default function Pricelist() {
     } catch (e) {
       console.log(e);
     }
+  };
+  const handleMarkAll = (checked) => {
+    setMarkAll(checked);
+    const temp = [];
+    for (let i in prices) {
+      temp[i] = checked;
+    }
+    setCheckedPrices(temp);
+  };
+  const markCheck = (index, check) => {
+    const temp = [...checkedPrices];
+    temp[index] = check;
+    setCheckedPrices(temp);
   };
 
   const selectStyle = {
@@ -45,15 +60,35 @@ export default function Pricelist() {
   };
 
   useEffect(() => {
+    const temp = [];
+    for (let i in prices) {
+      temp[i] = false;
+    }
+    setCheckedPrices(temp);
+  }, [prices]);
+  useEffect(() => {
     fetchPrices();
   }, []);
+  useEffect(() => {
+    for (let i in checkedPrices) {
+      if (checkedPrices[i] === false) {
+        setMarkAll(false);
+        break;
+      } else {
+        setMarkAll(true);
+      }
+    }
+  }, [checkedPrices]);
 
   return (
     <div className={cl.PriceList}>
       <Header />
       <div className={cl.horizontaltwo}>
         <div className={cl.checkall}>
-          <MyCheckBox />
+          <MyCheckBox
+            checked={markAll}
+            onChange={(e) => handleMarkAll(e.target.checked)}
+          />
           <p>Выбрать всё</p>
         </div>
         <div className={cl.sortselect}>
@@ -61,7 +96,11 @@ export default function Pricelist() {
           <Select styles={selectStyle} />
         </div>
       </div>
-      <Prices data={prices} />
+      <Prices
+        markCheck={markCheck}
+        checkedPrices={checkedPrices}
+        data={prices}
+      />
     </div>
   );
 }

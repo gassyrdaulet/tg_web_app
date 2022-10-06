@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cl from "../components/styles/Price.module.css";
 import greenglow from "../img/greenglow.png";
 import redglow from "../img/redglow.png";
 import ButtonRound from "./UI/buttons/ButtonRound.jsx";
 import MyCheckBox from "./UI/inputs/MyCheckBox";
 
-export default function Price({ data, index }) {
-  const [checked, setChecked] = useState(false);
-
+export default function Price({ data, index, checked, markCheck }) {
   return (
     <div className={cl.Price + " " + (checked ? cl.checked : "")}>
       <div className={cl.horizontalthree}>
         <div className={cl.index}>
           <div>
             <MyCheckBox
-              checked={checked}
-              onChange={(e) => setChecked(e.target.checked)}
+              checked={checked ? checked : false}
+              onChange={(e) => {
+                markCheck(index, e.target.checked);
+              }}
             ></MyCheckBox>
           </div>
           <div className={cl.hint}>{index + 1}</div>
