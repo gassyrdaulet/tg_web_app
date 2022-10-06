@@ -17,6 +17,32 @@ export default function Pricelist() {
     }
   };
 
+  const selectStyle = {
+    option: (provided) => ({
+      ...provided,
+      fontSize: 12,
+    }),
+    menu: (provided) => ({
+      ...provided,
+      height: 30,
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      height: 100,
+      zIndex: 1000,
+    }),
+    control: () => ({
+      display: "flex",
+      maxWidth: 88,
+      maxWHight: 38,
+      fontSize: 11,
+      border: "1px solid #c0c0c0",
+      borderRadius: "5px",
+      cursor: "pointer",
+    }),
+    dropdownIndicatorStyles: () => ({}),
+  };
+
   useEffect(() => {
     fetchPrices();
   }, []);
@@ -30,8 +56,8 @@ export default function Pricelist() {
           <p>Выбрать всё</p>
         </div>
         <div className={cl.sortselect}>
-          <Select />
-          <Select />
+          <Select styles={selectStyle} />
+          <Select styles={selectStyle} />
         </div>
       </div>
       <Prices data={prices} />
