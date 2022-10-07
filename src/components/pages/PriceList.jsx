@@ -346,6 +346,7 @@ export default function Pricelist() {
         return (
           <AsyncSelect
             defaultValue={categorySelectValue}
+            defaultOptions={[{ value: "all", label: "Все" }]}
             onChange={(value) => setCategorySortSelectValue(value)}
             key={param}
             loadOptions={searchCategories}
@@ -357,6 +358,7 @@ export default function Pricelist() {
         return (
           <AsyncSelect
             defaultValue={brandSelectValue}
+            defaultOptions={[{ value: "all", label: "Все" }]}
             onChange={(value) => setBrandSortSelectValue(value)}
             key={param}
             loadOptions={searchBrands}
