@@ -13,6 +13,7 @@ export default function Pricelist() {
   const [markAll, setMarkAll] = useState(false);
   const [markedSum, setMarkedSum] = useState(0);
   const [searchInput, setSearchInput] = useState("");
+  const [fixedButtonsShown, setFixedButtonsShown] = useState(false);
 
   const fetchPrices = async () => {
     try {
@@ -102,12 +103,15 @@ export default function Pricelist() {
   useEffect(() => {
     let temp = 0;
     let isThereFalse = false;
+    let isThereTrue = false;
     for (let i in checkedPrices) {
       if (checkedPrices[i] === false) {
         isThereFalse = true;
       } else {
+        isThereTrue = true;
         temp++;
       }
+      isThereTrue ? setFixedButtonsShown(true) : setFixedButtonsShown(false);
       isThereFalse ? setMarkAll(false) : setMarkAll(true);
       setMarkedSum(temp);
     }
@@ -136,10 +140,14 @@ export default function Pricelist() {
         markedSum={markedSum}
       />
       <div className={cl.up} />
-      <div className={cl.fixedbuttons}>
-        <ButtonRound>Деакт.</ButtonRound>
-        <ButtonRound>Удал.</ButtonRound>
-      </div>
+      {fixedButtonsShown ? (
+        <div className={cl.fixedbuttons}>
+          <ButtonRound>Деакт.</ButtonRound>
+          <ButtonRound>Удал.</ButtonRound>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
