@@ -154,6 +154,7 @@ export default function Pricelist() {
     option: (provided) => ({
       ...provided,
       fontSize: 8,
+      color: "black",
     }),
     menu: (provided) => ({
       ...provided,

@@ -36,7 +36,7 @@ export default function Price({ data, index, checked, markCheck }) {
       <div className={cl.category}>
         <p className={cl.hint}>
           {data.category ? data.category : "Категория"}{" "}
-          {new Date(data.date).toLocaleString()}
+          {new Date(data.date).toLocaleString("ru")}
         </p>
       </div>
       <div className={cl.horizontalthree}>
