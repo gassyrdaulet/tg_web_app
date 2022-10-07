@@ -65,10 +65,16 @@
 .model {
   width: 100%;
   text-align: center;
-  min-height: 48px;
-  height: 48px;
-  max-height: 48px;
+  min-height: 30px;
+  height: 30px;
+  max-height: 30px;
+  font-size: 13px;
   overflow: hidden;
+}
+.category {
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
 }
 .cost {
   display: flex;
@@ -76,7 +82,7 @@
 }
 .cost > * {
   text-align: center;
-  font-size: 11px;
+  font-size: 10px;
 }
 .pp {
   font-size: 11px;

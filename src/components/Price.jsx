@@ -21,14 +21,24 @@ export default function Price({ data, index, checked, markCheck }) {
           <div className={cl.hint}>{index + 1}</div>
         </div>
         <div>
-          <img src={greenglow} />
+          {data.activated === "yes" ? (
+            <img src={greenglow} />
+          ) : (
+            <img src={redglow} />
+          )}
         </div>
         <div className={cl.hint}>{data.id}</div>
       </div>
       <div className={cl.sku}>
         <a href={data.url}>{data.suk}</a>
       </div>
-      <div className={cl.model}>{data.model}</div>
+      <div className={cl.model}>{data.brand + " " + data.model}</div>
+      <div className={cl.category}>
+        <p className={cl.hint}>
+          {data.category ? data.category : "Категория"}{" "}
+          {new Date(data.date).toLocaleString()}
+        </p>
+      </div>
       <div className={cl.horizontalthree}>
         <div className={cl.cost}>
           <div className={cl.hint}>Мин.:</div>
