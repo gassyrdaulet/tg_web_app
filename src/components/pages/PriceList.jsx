@@ -9,10 +9,10 @@ import { useInput } from "../../hooks/useInput.js";
 
 export default function Pricelist() {
   const [prices, setPrices] = useState([]);
-  const [checkedPrices, setCheckedPrices] = useState([]);
+  const [checkedPrices, setCheckedPrices] = useState({});
   const [markAll, setMarkAll] = useState(false);
   const [markedSum, setMarkedSum] = useState(0);
-  const search = useInput("", { noValidations: true }, "text");
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchPrices = async () => {
     try {
@@ -23,16 +23,23 @@ export default function Pricelist() {
   };
   const handleMarkAll = (checked) => {
     setMarkAll(checked);
-    const temp = [];
-    for (let i in prices) {
+    const temp = {};
+    for (let i in filteredPrices) {
       temp[i] = checked;
     }
     setCheckedPrices(temp);
   };
-  const markCheck = (index, check) => {
-    const temp = [...checkedPrices];
-    temp[index] = check;
+  const markCheck = (id, check) => {
+    const temp = { ...checkedPrices };
+    temp[id] = check;
     setCheckedPrices(temp);
+  };
+  const handleSearchChange = (value) => {
+    setMarkAll(false);
+    const temp = value
+      .replace(/[^0-9а-яa-z\s\.\,\/\-\+]/gi, "")
+      .substring(0, 50);
+    setSearchInput(temp);
   };
 
   const selectStyle = {
@@ -62,16 +69,33 @@ export default function Pricelist() {
     dropdownIndicatorStyles: () => ({}),
   };
 
+  const filteredPrices = useMemo(() => {
+    try {
+      const temp = [...prices].filter((price) => {
+        return (
+          price.model.toLowerCase().includes(searchInput.toLowerCase()) ||
+          (price.id + "").toLowerCase().includes(searchInput.toLowerCase()) ||
+          price.brand.toLowerCase().includes(searchInput.toLowerCase()) ||
+          price.suk.toLowerCase().includes(searchInput.toLowerCase())
+        );
+      });
+      return temp;
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
+  }, [searchInput, prices]);
+
   useEffect(() => {
     fetchPrices();
   }, []);
   useEffect(() => {
-    const temp = [];
-    for (let i in prices) {
+    const temp = {};
+    for (let i in filteredPrices) {
       temp[i] = false;
     }
     setCheckedPrices(temp);
-  }, [prices]);
+  }, [filteredPrices]);
   useEffect(() => {
     let temp = 0;
     let isThereFalse = false;
@@ -85,25 +109,10 @@ export default function Pricelist() {
       setMarkedSum(temp);
     }
   }, [checkedPrices]);
-  const filteredPrices = useMemo(() => {
-    console.log(search.props.value);
-    try {
-      const temp = [...prices].filter((price) => {
-        price.model.toLowerCase().includes(search.props.value.toLowerCase());
-      });
-      return temp;
-    } catch (e) {
-      console.log(e);
-      return [];
-    }
-  }, [search.props.value, prices]);
 
   return (
     <div className={cl.PriceList}>
-      <Header
-        searchValue={search.props.value}
-        setSearchValue={search.props.onChange}
-      />
+      <Header searchValue={searchInput} setSearchValue={handleSearchChange} />
       <div className={cl.horizontaltwo}>
         <div className={cl.checkall}>
           <MyCheckBox

@@ -14,7 +14,7 @@ export default function Price({ data, index, checked, markCheck }) {
             <MyCheckBox
               checked={checked ? checked : false}
               onChange={(e) => {
-                markCheck(index, e.target.checked);
+                markCheck(data.id, e.target.checked);
               }}
             ></MyCheckBox>
           </div>

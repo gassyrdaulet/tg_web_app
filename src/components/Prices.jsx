@@ -12,7 +12,7 @@ export default function ({ data, checkedPrices, markCheck, markedSum }) {
       {data.map((price, index) => (
         <Price
           markCheck={markCheck}
-          checked={checkedPrices[index]}
+          checked={checkedPrices[price.id]}
           key={price.id}
           data={price}
           index={index}

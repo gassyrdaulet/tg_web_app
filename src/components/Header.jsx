@@ -13,7 +13,7 @@ export default function header({ searchValue, setSearchValue }) {
           <MyInputSearch
             value={searchValue}
             onChange={(e) => {
-              setSearchValue(e);
+              setSearchValue(e.target.value);
             }}
             className={cl.searchinput}
             type="text"
@@ -23,6 +23,7 @@ export default function header({ searchValue, setSearchValue }) {
           <div
             onClick={() => {
               setIsSearchActive(!isSearchActive);
+              setSearchValue("");
             }}
             className={cl.closebutton}
           />
