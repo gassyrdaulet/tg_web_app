@@ -30,6 +30,7 @@ export default function Newpriceform() {
   return (
     <div>
       <div className="horizontal">
+        {console.log(tg.initData.hash)}
         <MyInput {...nameProps} type="text" />
         <ErrorList>{name.isDirty ? name.errorText : ""}</ErrorList>
       </div>
