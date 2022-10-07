@@ -27,6 +27,10 @@ export default function Newpriceform() {
     }
   }, [nameProps.value, name.inValid]);
 
+  // git add .
+  // git commit -m "init"
+  // git push
+
   return (
     <div>
       <div className="horizontal">
