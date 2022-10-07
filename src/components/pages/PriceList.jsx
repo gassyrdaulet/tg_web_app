@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
+import { useScroll } from "framer-motion";
 import cl from "./styles/pricelist.module.css";
 import { getAllPrices } from "../../API/PricesService";
 import Prices from "../Prices.jsx";
@@ -14,23 +15,20 @@ export default function Pricelist() {
   const [markedSum, setMarkedSum] = useState(0);
   const [searchInput, setSearchInput] = useState("");
   const [fixedButtonsShown, setFixedButtonsShown] = useState(false);
-  const [scrollPosition, setSrollPosition] = useState(0);
+  const refScrollUp = useRef(null);
+  const { scrollY } = useScroll();
   const [showGoTop, setshowGoTop] = useState(false);
-  const refScrollUp = useRef();
 
-  const handleVisibleButton = () => {
-    const position = window.pageYOffset;
-    setSrollPosition(position);
-
-    if (scrollPosition > 50) {
-      return setshowGoTop(true);
-    } else if (scrollPosition < 50) {
-      return setshowGoTop(false);
-    }
-  };
   useEffect(() => {
-    window.addEventListener("scroll", handleVisibleButton);
-  });
+    return scrollY.onChange((latest) => {
+      if (latest > 50) {
+        setshowGoTop(true);
+      } else {
+        setshowGoTop(false);
+      }
+    });
+  }, []);
+
   const handleScrollUp = () => {
     refScrollUp.current.scrollIntoView({ behavior: "smooth" });
   };
