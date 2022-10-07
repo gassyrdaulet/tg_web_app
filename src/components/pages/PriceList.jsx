@@ -86,6 +86,7 @@ export default function Pricelist() {
     }
   }, [checkedPrices]);
   const filteredPrices = useMemo(() => {
+    console.log(search.props.value);
     try {
       const temp = [...prices].filter((price) => {
         price.model.toLowerCase().includes(search.props.value.toLowerCase());

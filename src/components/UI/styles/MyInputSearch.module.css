@@ -7,11 +7,9 @@
   max-width: 400px;
   background: transparent;
   color: var(--tg-theme-text-color);
-  margin-bottom: 5px;
   border-bottom: 1px solid var(--tg-theme-text-color);
-  /* border-bottom: 1px solid red; */
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
 }
 .MyInput:hover {
   border-bottom: 1px solid var(--tg-theme-text-color);
