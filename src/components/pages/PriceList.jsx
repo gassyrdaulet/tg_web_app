@@ -5,6 +5,7 @@ import Prices from "../Prices.jsx";
 import Header from "../Header.jsx";
 import MyCheckBox from "../UI/inputs/MyCheckBox";
 import Select from "react-select";
+import ButtonRound from "../UI/buttons/ButtonRound.jsx";
 
 export default function Pricelist() {
   const [prices, setPrices] = useState([]);
@@ -34,6 +35,9 @@ export default function Pricelist() {
     setCheckedPrices(temp);
   };
   const handleSearchChange = (value) => {
+    if (value.length > 27) {
+      return;
+    }
     setMarkAll(false);
     const temp = value
       .replace(/[^0-9а-яa-z\s\.\,\/\-\+]/gi, "")
@@ -131,6 +135,11 @@ export default function Pricelist() {
         data={filteredPrices}
         markedSum={markedSum}
       />
+      <div className={cl.up} />
+      <div className={cl.fixedbuttons}>
+        <ButtonRound>Деакт.</ButtonRound>
+        <ButtonRound>Удал.</ButtonRound>
+      </div>
     </div>
   );
 }

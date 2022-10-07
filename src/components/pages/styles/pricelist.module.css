@@ -1,4 +1,5 @@
 .PriceList {
+  position: relative;
   width: 90%;
   margin: 0 auto;
   font-size: 11px;
@@ -30,4 +31,34 @@
 }
 .sortselect > * {
   margin-left: 5px;
+}
+.up {
+  cursor: pointer;
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  height: 50px;
+  width: 50px;
+  background: var(--tg-theme-bg-color);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  z-index: 19;
+  overflow: hidden;
+}
+.up::before {
+  content: "";
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  left: 22%;
+  top: 34%;
+  border-width: 3.5px 3.5px 0 0;
+  border-style: solid;
+  border-color: var(--tg-theme-text-color);
+  transform: rotate(-45deg);
+  z-index: 20;
 }
