@@ -5,7 +5,6 @@ import Prices from "../Prices.jsx";
 import Header from "../Header.jsx";
 import MyCheckBox from "../UI/inputs/MyCheckBox";
 import Select from "react-select";
-import { useInput } from "../../hooks/useInput.js";
 
 export default function Pricelist() {
   const [prices, setPrices] = useState([]);
@@ -24,8 +23,8 @@ export default function Pricelist() {
   const handleMarkAll = (checked) => {
     setMarkAll(checked);
     const temp = {};
-    for (let i in filteredPrices) {
-      temp[i] = checked;
+    for (let i of filteredPrices) {
+      temp[i.id] = checked;
     }
     setCheckedPrices(temp);
   };
@@ -91,8 +90,8 @@ export default function Pricelist() {
   }, []);
   useEffect(() => {
     const temp = {};
-    for (let i in filteredPrices) {
-      temp[i] = false;
+    for (let i of filteredPrices) {
+      temp[i.id] = false;
     }
     setCheckedPrices(temp);
   }, [filteredPrices]);
