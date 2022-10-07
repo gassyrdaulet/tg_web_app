@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import cl from "./styles/pricelist.module.css";
 import { getAllPrices } from "../../API/PricesService";
 import Prices from "../Prices.jsx";
@@ -14,6 +14,26 @@ export default function Pricelist() {
   const [markedSum, setMarkedSum] = useState(0);
   const [searchInput, setSearchInput] = useState("");
   const [fixedButtonsShown, setFixedButtonsShown] = useState(false);
+  const [scrollPosition, setSrollPosition] = useState(0);
+  const [showGoTop, setshowGoTop] = useState(false);
+  const refScrollUp = useRef();
+
+  const handleVisibleButton = () => {
+    const position = window.pageYOffset;
+    setSrollPosition(position);
+
+    if (scrollPosition > 50) {
+      return setshowGoTop(true);
+    } else if (scrollPosition < 50) {
+      return setshowGoTop(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleVisibleButton);
+  });
+  const handleScrollUp = () => {
+    refScrollUp.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const fetchPrices = async () => {
     try {
@@ -103,22 +123,20 @@ export default function Pricelist() {
   useEffect(() => {
     let temp = 0;
     let isThereFalse = false;
-    let isThereTrue = false;
     for (let i in checkedPrices) {
       if (checkedPrices[i] === false) {
         isThereFalse = true;
       } else {
-        isThereTrue = true;
         temp++;
       }
-      isThereTrue ? setFixedButtonsShown(true) : setFixedButtonsShown(false);
+      temp > 0 ? setFixedButtonsShown(true) : setFixedButtonsShown(false);
       isThereFalse ? setMarkAll(false) : setMarkAll(true);
       setMarkedSum(temp);
     }
   }, [checkedPrices]);
 
   return (
-    <div className={cl.PriceList}>
+    <div ref={refScrollUp} className={cl.PriceList}>
       <Header searchValue={searchInput} setSearchValue={handleSearchChange} />
       <div className={cl.horizontaltwo}>
         <div className={cl.checkall}>
@@ -139,7 +157,7 @@ export default function Pricelist() {
         data={filteredPrices}
         markedSum={markedSum}
       />
-      <div className={cl.up} />
+      {showGoTop ? <div onClick={handleScrollUp} className={cl.up} /> : ""}
       {fixedButtonsShown ? (
         <div className={cl.fixedbuttons}>
           <ButtonRound>Деакт.</ButtonRound>

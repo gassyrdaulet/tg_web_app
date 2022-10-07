@@ -5,6 +5,7 @@
   font-size: 11px;
   user-select: none;
   color: var(--tg-theme-hint-color);
+  padding-top: 50px;
 }
 .horizontaltwo {
   width: 90%;
@@ -40,7 +41,7 @@
   height: 50px;
   width: 50px;
   background: var(--tg-theme-bg-color);
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 2px var(--tg-theme-hint-color);
   border-radius: 50%;
   z-index: 19;
   overflow: hidden;
@@ -58,7 +59,7 @@
   top: 34%;
   border-width: 3.5px 3.5px 0 0;
   border-style: solid;
-  border-color: var(--tg-theme-text-color);
+  border-color: var(--tg-theme-hint-color);
   transform: rotate(-45deg);
   z-index: 20;
 }
