@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import cl from "./styles/pricelist.module.css";
 import { getAllPrices } from "../../API/PricesService";
 import Prices from "../Prices.jsx";
 import Header from "../Header.jsx";
 import MyCheckBox from "../UI/inputs/MyCheckBox";
 import Select from "react-select";
+import { useInput } from "../../hooks/useInput.js";
 
 export default function Pricelist() {
   const [prices, setPrices] = useState([]);
   const [checkedPrices, setCheckedPrices] = useState([]);
   const [markAll, setMarkAll] = useState(false);
   const [markedSum, setMarkedSum] = useState(0);
+  const search = useInput("", { noValidations: true }, "text");
 
   const fetchPrices = async () => {
     try {
@@ -83,10 +85,24 @@ export default function Pricelist() {
       setMarkedSum(temp);
     }
   }, [checkedPrices]);
+  const filteredPrices = useMemo(() => {
+    try {
+      const temp = [...prices].filter((price) => {
+        price.model.toLowerCase().includes(search.props.value.toLowerCase());
+      });
+      return temp;
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
+  }, [search.props.value, prices]);
 
   return (
     <div className={cl.PriceList}>
-      <Header />
+      <Header
+        searchValue={search.props.value}
+        setSearchValue={search.props.onChange}
+      />
       <div className={cl.horizontaltwo}>
         <div className={cl.checkall}>
           <MyCheckBox
@@ -103,7 +119,7 @@ export default function Pricelist() {
       <Prices
         markCheck={markCheck}
         checkedPrices={checkedPrices}
-        data={prices}
+        data={filteredPrices}
         markedSum={markedSum}
       />
     </div>

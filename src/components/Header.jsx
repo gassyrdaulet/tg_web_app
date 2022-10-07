@@ -3,14 +3,23 @@ import cl from "./styles/header.module.css";
 import { useTelegram } from "../hooks/useTelegram";
 import MyInputSearch from "../components/UI/inputs/MyInputSearch.jsx";
 
-export default function header() {
+export default function header({ searchValue, setSearchValue }) {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const { user } = useTelegram();
   return (
     <div className={cl.header}>
       {isSearchActive ? (
         <span className={cl.username}>
-          <MyInputSearch className={cl.searchinput} type="text" name="" id="" />
+          <MyInputSearch
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e);
+            }}
+            className={cl.searchinput}
+            type="text"
+            name=""
+            id=""
+          />
           <div
             onClick={() => {
               setIsSearchActive(!isSearchActive);
