@@ -34,7 +34,7 @@ export default function Newpriceform() {
   return (
     <div>
       <div className="horizontal">
-        {typeof tg.initData}
+        {tg.initData}
         <MyInput {...nameProps} type="text" />
         <ErrorList>{name.isDirty ? name.errorText : ""}</ErrorList>
       </div>
