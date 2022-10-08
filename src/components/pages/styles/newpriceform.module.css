@@ -1,0 +1,75 @@
+.NewPrice {
+  padding-top: 50px;
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 11px;
+  user-select: none;
+  color: var(--tg-theme-hint-color);
+}
+.pageTitle {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0 30px 0;
+}
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 110vh;
+  background: var(--tg-theme-bg-color);
+  border-radius: 20px;
+  padding: 20px 10px;
+  color: var(--tg-theme-text-color);
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid transparent;
+  user-select: none;
+}
+.inputItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.inputItem span:nth-child(1) {
+  width: 14%;
+}
+.inputItem span:nth-child(2) {
+  width: 100%;
+}
+.inputItem span:nth-child(3) {
+  width: 14%;
+}
+.hint {
+  display: flex;
+  justify-content: flex-end;
+}
+.hint img {
+  cursor: pointer;
+  user-select: none;
+  width: 25px;
+  height: 25px;
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.availabilities {
+  font-size: 11px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.availabilities > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
