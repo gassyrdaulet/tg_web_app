@@ -180,7 +180,7 @@ export default function Newpriceform() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>Минимальная цена:</div>
             <div className={cl.input}>
-              <MyInput {...minPriceProps} type="text" />
+              <MyInput {...minPriceProps} inputMode="numeric" type="text" />
             </div>
           </span>
           <span className={cl.errors}>
@@ -201,7 +201,7 @@ export default function Newpriceform() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>Максимальная цена:</div>
             <div className={cl.input}>
-              <MyInput {...maxPriceProps} type="text" />
+              <MyInput {...maxPriceProps} inputMode="numeric" type="text" />
             </div>
           </span>
           <span className={cl.errors}>
