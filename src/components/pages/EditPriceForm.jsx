@@ -64,6 +64,7 @@ export default function EditPriceForm() {
   const onSendData = useCallback(() => {
     const data = {
       method: "edit",
+      id: params.id,
       suk: skuProps.value,
       suk2: nameProps.value,
       model: modelProps.value,
