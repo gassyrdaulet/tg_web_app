@@ -128,6 +128,7 @@ export default function Pricelist() {
   ];
   const availabilityOptions = [
     { value: "all", label: "Все" },
+    { value: "nowhere", label: "Нигде" },
     { value: "", label: "PP1" },
     { value: "2", label: "PP2" },
     { value: "3", label: "PP3" },
@@ -226,6 +227,18 @@ export default function Pricelist() {
           sortedArray = [...prices].sort((a, b) => {
             return a.brand.localeCompare(b.brand);
           });
+          if (availabilitySelectValue.value === "nowhere") {
+            sortedArray = [...sortedArray].filter((price) => {
+              let nowhere = true;
+              for (let i = 1; i <= 5; i++) {
+                if (price["availability"].$.available === "yes") {
+                  nowhere = false;
+                  break;
+                }
+              }
+              return nowhere;
+            });
+          }
           if (availabilitySelectValue.value === "all") {
             return sortedArray;
           }
