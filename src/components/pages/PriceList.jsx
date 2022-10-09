@@ -63,10 +63,35 @@ export default function Pricelist() {
 
   const { tg } = useTelegram();
 
+  const getMarkedIdsArray = () => {
+    let array = [];
+    for (let key in checkedPrices) {
+      if (checkedPrices[key] === true) {
+        array.push(parseInt(key));
+      }
+    }
+    return array;
+  };
+
   const deactivate = () => {
     const data = {
       method: "deactivate",
+      id: getMarkedIdsArray(),
+    };
+    tg.sendData(JSON.stringify(data));
+  };
+  const activate = () => {
+    const data = {
+      method: "activate",
+      id: getMarkedIdsArray(),
       checkedPrices,
+    };
+    tg.sendData(JSON.stringify(data));
+  };
+  const deleteprices = () => {
+    const data = {
+      method: "delete",
+      id: getMarkedIdsArray(),
     };
     tg.sendData(JSON.stringify(data));
   };
@@ -471,8 +496,48 @@ export default function Pricelist() {
       {showGoTop ? <div onClick={handleScrollUp} className={cl.up} /> : ""}
       {fixedButtonsShown ? (
         <div className={cl.fixedbuttons}>
-          <ButtonRound onClick={deactivate}>Деакт.</ButtonRound>
-          <ButtonRound>Удал.</ButtonRound>
+          <ButtonRound
+            onClick={() => {
+              tg.showConfirm(
+                "Вы уверены что хотите активировать все выбранные прайсы?",
+                (pressed) => {
+                  if (pressed) {
+                    deactivate();
+                  }
+                }
+              );
+            }}
+          >
+            Акт. Все
+          </ButtonRound>
+          <ButtonRound
+            onClick={() => {
+              tg.showConfirm(
+                "Вы уверены что хотите деактивировать все выбранные прайсы?",
+                (pressed) => {
+                  if (pressed) {
+                    activate();
+                  }
+                }
+              );
+            }}
+          >
+            Деакт. Все
+          </ButtonRound>
+          <ButtonRound
+            onClick={() => {
+              tg.showConfirm(
+                "Вы уверены что хотите удалить все выбранные прайсы?",
+                (pressed) => {
+                  if (pressed) {
+                    deleteprices();
+                  }
+                }
+              );
+            }}
+          >
+            Удал. Все
+          </ButtonRound>
         </div>
       ) : (
         ""
