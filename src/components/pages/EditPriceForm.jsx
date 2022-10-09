@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import cl from "./styles/newpriceform.module.css";
 import { useInput } from "../../hooks/useInput";
 import MyInput from "../UI/inputs/MyInput.jsx";
