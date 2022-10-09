@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import cl from "./styles/newpriceform.module.css";
 import { useInput } from "../../hooks/useInput";
-import MyInput from "../UI/inputs/MyInput";
+import MyInput from "../UI/inputs/MyInput.jsx";
 import ErrorList from "../UI/other/ErrorList";
 import { useTelegram } from "../../hooks/useTelegram.js";
 import Header from "../Header";
 import questionmark from "../../img/questionmark.svg";
-import MyCheckBox from "../UI/inputs/MyCheckBox";
+import MyCheckBox from "../UI/inputs/MyCheckBox.jsx";
+import { getPriceById } from "../../API/PricesService.js";
+import { useParams } from "react-router-dom";
 
-export default function NewPriceForm() {
+export default function EditPriceForm() {
+  const [result, setResult] = useState({});
   const { props: skuProps, ...sku } = useInput(
     "",
     { isEmpty: true, maxLength: 25 },
@@ -53,9 +56,31 @@ export default function NewPriceForm() {
   const [arePricesError, setArePricesError] = useState(false);
   const [isAvailabilityError, setIsAvailabilityError] = useState(false);
 
+  const fromId = "767355250";
+  const params = useParams();
   const { tg } = useTelegram();
   const showHintBtn = true;
 
+  useEffect(() => {
+    const fetchPriceInfo = async () => {
+      setResult(await getPriceById(fromId, params.id));
+    };
+    fetchPriceInfo();
+  }, []);
+  useEffect(() => {
+    sku.setValue(result.suk ? result.suk : "");
+    name.setValue(result.suk2 ? result.suk2 : "");
+    model.setValue(result.model ? result.model : "");
+    brand.setValue(result.brand ? result.brand : "");
+    category.setValue(result.category ? result.category : "");
+    minPrice.setValue(result.minprice ? result.minprice : "");
+    maxPrice.setValue(result.maxprice ? result.maxprice : "");
+    setpp1ch(result.availability?.$.available === "yes");
+    setpp2ch(result.availability?.$.available2 === "yes");
+    setpp3ch(result.availability?.$.available3 === "yes");
+    setpp4ch(result.availability?.$.available4 === "yes");
+    setpp5ch(result.availability?.$.available5 === "yes");
+  }, [result]);
   useEffect(() => {
     if (pp1ch || pp2ch || pp3ch || pp4ch || pp5ch) {
       setIsAvailabilityError(false);
@@ -87,7 +112,7 @@ export default function NewPriceForm() {
     <div className={cl.NewPrice}>
       <Header searchable={false} infoButton={true} />
       <div className={cl.pageTitle}>
-        <p>Страница добавления нового прайса.</p>
+        <p>Страница редактирования прайса.</p>
         <p>Все поля обязательны.</p>
         <p>
           После полного заполнения внизу <br /> появится кнопка сохранения.

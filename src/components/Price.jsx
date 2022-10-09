@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
 import cl from "../components/styles/Price.module.css";
 import greenglow from "../img/greenglow.png";
 import redglow from "../img/redglow.png";
 import ButtonRound from "./UI/buttons/ButtonRound.jsx";
 import MyCheckBox from "./UI/inputs/MyCheckBox";
+import { useNavigate } from "react-router-dom";
 
 export default function Price({ data, index, checked, markCheck }) {
+  const router = useNavigate();
   return (
     <div className={cl.Price + " " + (checked ? cl.checked : "")}>
       <div className={cl.horizontalthree}>
@@ -95,7 +96,13 @@ export default function Price({ data, index, checked, markCheck }) {
         <div className={cl.buttons}>
           <ButtonRound>Деакт.</ButtonRound>
           <ButtonRound>Удал.</ButtonRound>
-          <ButtonRound>Ред.</ButtonRound>
+          <ButtonRound
+            onClick={() => {
+              router("/edit/" + data.id);
+            }}
+          >
+            Ред.
+          </ButtonRound>
         </div>
       </div>
     </div>

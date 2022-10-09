@@ -59,5 +59,6 @@ export const useInput = (initialValue, validations, limiter) => {
     isDirty,
     ...valid,
     setIsDirty,
+    setValue,
   };
 };
