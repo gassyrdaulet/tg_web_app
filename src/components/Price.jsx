@@ -5,6 +5,7 @@ import ButtonRound from "./UI/buttons/ButtonRound.jsx";
 import MyCheckBox from "./UI/inputs/MyCheckBox";
 import { useNavigate } from "react-router-dom";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { useTelegram } from "../hooks/useTelegram";
 
 export default function Price({
   handleOnCopy,
@@ -15,6 +16,10 @@ export default function Price({
   storeId,
 }) {
   const router = useNavigate();
+  const { tg } = useTelegram();
+  const handleOnCopyTest = () => {
+    tg.showAlert("Скопировано.");
+  };
 
   return (
     <div className={cl.Price + " " + (checked ? cl.checked : "")}>
@@ -42,7 +47,10 @@ export default function Price({
       <div className={cl.sku}>
         <a href={data.url}>{data.suk}</a>
         <CopyToClipboard
-          onCopy={handleOnCopy}
+          onCopy={() => {
+            handleOnCopy();
+            handleOnCopyTest();
+          }}
           text={"https://kaspi.kz/shop/p/-" + data.suk + "/?m=" + storeId}
         >
           <div className={cl.copy}></div>

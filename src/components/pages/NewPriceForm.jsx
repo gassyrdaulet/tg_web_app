@@ -76,12 +76,32 @@ export default function NewPriceForm() {
     });
   }, []);
   useEffect(() => {
-    if (!nameProps.value.length === 0 || name.inValid) {
+    if (
+      sku.inValid ||
+      name.inValid ||
+      model.inValid ||
+      brand.inValid ||
+      category.inValid ||
+      minPrice.inValid ||
+      maxPrice.inValid ||
+      arePricesError ||
+      isAvailabilityError
+    ) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
     }
-  }, [nameProps.value, name.inValid]);
+  }, [
+    sku.inValid,
+    name.inValid,
+    model.inValid,
+    brand.inValid,
+    category.inValid,
+    minPrice.inValid,
+    maxPrice.inValid,
+    arePricesError,
+    isAvailabilityError,
+  ]);
 
   return (
     <div className={cl.NewPrice}>
