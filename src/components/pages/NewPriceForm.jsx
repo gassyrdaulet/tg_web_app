@@ -147,7 +147,9 @@ export default function NewPriceForm() {
       <Header searchable={false} infoButton={true} />
       <div className={cl.pageTitle}>
         <p>Страница добавления нового прайса.</p>
-        <p>Все поля обязательны.{typeof tg.initData}</p>
+        <p>
+          Все поля обязательны.{typeof tg.initData + " , " + tg.initData.length}
+        </p>
         <p>
           После полного заполнения внизу <br /> появится кнопка сохранения.
         </p>
