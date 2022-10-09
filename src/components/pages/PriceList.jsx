@@ -60,6 +60,14 @@ export default function Pricelist() {
     label: "Сперва новые",
   });
 
+  const deactivate = useCallback(() => {
+    const data = {
+      method: "activation",
+      checkedPrices,
+    };
+    tg.sendData(JSON.stringify(data));
+  }, [checkedPrices]);
+
   const handleOnCopy = () => {
     setCopied(true);
     setTimeout(setCopied, 2000, false);
@@ -460,7 +468,7 @@ export default function Pricelist() {
       {showGoTop ? <div onClick={handleScrollUp} className={cl.up} /> : ""}
       {fixedButtonsShown ? (
         <div className={cl.fixedbuttons}>
-          <ButtonRound>Деакт.</ButtonRound>
+          <ButtonRound onClick={deactivate}>Деакт.</ButtonRound>
           <ButtonRound>Удал.</ButtonRound>
         </div>
       ) : (

@@ -61,6 +61,45 @@ export default function EditPriceForm() {
   const { tg } = useTelegram();
   const showHintBtn = true;
 
+  const onSendData = useCallback(() => {
+    const data = {
+      method: "edit",
+      suk: skuProps.value,
+      suk2: nameProps.value,
+      model: modelProps.value,
+      brand: brandProps.value,
+      category: categoryProps.value,
+      minprice: minPriceProps.value,
+      availability: pp1ch,
+      availability2: pp2ch,
+      availability3: pp3ch,
+      availability4: pp4ch,
+      availability5: pp5ch,
+      maxprice: maxPriceProps.value,
+    };
+    tg.sendData(JSON.stringify(data));
+  }, [
+    skuProps.value,
+    nameProps.value,
+    modelProps.value,
+    brandProps.value,
+    categoryProps.value,
+    minPriceProps.value,
+    maxPriceProps.value,
+    pp1ch,
+    pp2ch,
+    pp3ch,
+    pp4ch,
+    pp5ch,
+  ]);
+
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, [onSendData]);
+
   useEffect(() => {
     const fetchPriceInfo = async () => {
       setResult(await getPriceById(fromId, params.id));

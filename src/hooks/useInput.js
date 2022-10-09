@@ -27,7 +27,7 @@ export const useInput = (initialValue, validations, limiter) => {
       setValue(temp);
     } else if (limiter === "text") {
       temp = e.target.value
-        .replace(/[^0-9а-яa-z\s\.\,\/\-]/gi, "")
+        .replace(/[^0-9а-яa-z\s\.\,\/\-\_\@\#\%\&\*\(\)\@\!]/gi, "")
         .substring(0, 50);
       setValue(temp);
     } else if (limiter === "house") {
