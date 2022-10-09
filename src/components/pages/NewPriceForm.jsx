@@ -93,7 +93,7 @@ export default function NewPriceForm() {
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
     };
-  }, []);
+  }, [onSendData]);
   useEffect(() => {
     if (pp1ch || pp2ch || pp3ch || pp4ch || pp5ch) {
       setIsAvailabilityError(false);
