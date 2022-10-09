@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  useRef,
-  useCallback,
-} from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import { useScroll } from "framer-motion";
 import cl from "./styles/pricelist.module.css";
 import {
@@ -66,13 +60,13 @@ export default function Pricelist() {
     label: "Сперва новые",
   });
 
-  const deactivate = useCallback(() => {
+  const deactivate = () => {
     const data = {
       method: "activation",
       checkedPrices,
     };
     tg.sendData(JSON.stringify(data));
-  }, [checkedPrices]);
+  };
 
   const handleOnCopy = () => {
     setCopied(true);
