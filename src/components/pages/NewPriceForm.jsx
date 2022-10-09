@@ -73,7 +73,20 @@ export default function NewPriceForm() {
       maxprice: maxPrice,
     };
     tg.sendData(JSON.stringify(data));
-  });
+  }, [
+    sku,
+    name,
+    model,
+    brand,
+    category,
+    minPrice,
+    maxPrice,
+    pp1ch,
+    pp2ch,
+    pp3ch,
+    pp4ch,
+    pp5ch,
+  ]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
