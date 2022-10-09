@@ -63,7 +63,7 @@ export default function Pricelist() {
   const deactivate = () => {
     const data = {
       method: "activation",
-      checkedPrices,
+      checkedPrices: "ss",
     };
     tg.sendData(JSON.stringify(data));
   };
