@@ -79,17 +79,7 @@
   box-shadow: 0 0 2px var(--tg-theme-hint-color);
 }
 .copysuccess {
-  position: fixed;
-  background: white;
-  padding: 10px;
-  bottom: 7%;
-  border: 1px solid;
-  border-radius: 5px;
-  left: 15%;
-  z-index: 50;
-  font-size: 7px;
-  color: transparent;
-  transition: 0.6s;
+  display: none;
 }
 .copysuccessactive {
   position: fixed;
