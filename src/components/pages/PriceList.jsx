@@ -507,7 +507,7 @@ export default function Pricelist() {
               );
             }}
           >
-            Акт. Все
+            Акт.
           </ButtonRound>
           <ButtonRound
             onClick={() => {
@@ -521,7 +521,7 @@ export default function Pricelist() {
               );
             }}
           >
-            Деакт. Все
+            Деакт.
           </ButtonRound>
           <ButtonRound
             onClick={() => {
@@ -535,7 +535,7 @@ export default function Pricelist() {
               );
             }}
           >
-            Удал. Все
+            Удал.
           </ButtonRound>
         </div>
       ) : (
