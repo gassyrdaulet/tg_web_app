@@ -17,6 +17,23 @@ export default function Price({
 }) {
   const router = useNavigate();
   const { tg } = useTelegram();
+
+  const activate = () => {
+    const data = {
+      method: "activate",
+      id: [data.id],
+    };
+    tg.sendData(JSON.stringify(data));
+  };
+
+  const deactivate = () => {
+    const data = {
+      method: "deactivate",
+      id: [data.id],
+    };
+    tg.sendData(JSON.stringify(data));
+  };
+
   const handleOnCopyTest = () => {
     tg.showAlert("Скопировано.");
   };
@@ -116,7 +133,9 @@ export default function Price({
           </p>
         </div>
         <div className={cl.buttons}>
-          <ButtonRound>Деакт.</ButtonRound>
+          <ButtonRound onClick={data.activated ? deactivate : activate}>
+            {data.activated === "yes" ? "Деакт." : "Актив."}
+          </ButtonRound>
           <ButtonRound>Удал.</ButtonRound>
           <ButtonRound
             onClick={() => {
