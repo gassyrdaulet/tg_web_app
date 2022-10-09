@@ -36,7 +36,7 @@ export const useInput = (initialValue, validations, limiter) => {
     } else if (limiter === "price") {
       temp = e.target.value
         .replace(/^0{2,}|^0.|[^0-9\/]/gim, "")
-        .substring(0, 5);
+        .substring(0, 9);
       setValue(temp);
     } else {
       setValue(e.target.value);

@@ -6,6 +6,7 @@
   user-select: none;
   color: var(--tg-theme-hint-color);
   padding-top: 50px;
+  overflow: hidden;
 }
 .horizontaltwo {
   width: 90%;
