@@ -16,6 +16,8 @@ import debounce from "lodash.debounce";
 
 export default function Pricelist() {
   const fromId = "767355250";
+  const storeId = "15503068";
+  const [copied, setCopied] = useState(false);
   const [prices, setPrices] = useState([]);
   const [checkedPrices, setCheckedPrices] = useState({});
   const [markAll, setMarkAll] = useState(false);
@@ -58,6 +60,10 @@ export default function Pricelist() {
     label: "Сперва новые",
   });
 
+  const handleOnCopy = () => {
+    setCopied(true);
+    setTimeout(setCopied, 2000, false);
+  };
   useEffect(() => {
     return scrollY.onChange((latest) => {
       if (latest > 60) {
@@ -432,7 +438,12 @@ export default function Pricelist() {
         checkedPrices={checkedPrices}
         data={filteredPrices}
         markedSum={markedSum}
+        storeId={storeId}
+        handleOnCopy={handleOnCopy}
       />
+      <p className={copied ? cl.copysuccessactive : cl.copysuccess}>
+        Скопировано
+      </p>
       {showGoTop ? <div onClick={handleScrollUp} className={cl.up} /> : ""}
       {fixedButtonsShown ? (
         <div className={cl.fixedbuttons}>

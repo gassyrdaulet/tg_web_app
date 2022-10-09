@@ -4,9 +4,18 @@ import redglow from "../img/redglow.png";
 import ButtonRound from "./UI/buttons/ButtonRound.jsx";
 import MyCheckBox from "./UI/inputs/MyCheckBox";
 import { useNavigate } from "react-router-dom";
+import CopyToClipboard from "react-copy-to-clipboard";
 
-export default function Price({ data, index, checked, markCheck }) {
+export default function Price({
+  handleOnCopy,
+  data,
+  index,
+  checked,
+  markCheck,
+  storeId,
+}) {
   const router = useNavigate();
+
   return (
     <div className={cl.Price + " " + (checked ? cl.checked : "")}>
       <div className={cl.horizontalthree}>
@@ -32,6 +41,12 @@ export default function Price({ data, index, checked, markCheck }) {
       </div>
       <div className={cl.sku}>
         <a href={data.url}>{data.suk}</a>
+        <CopyToClipboard
+          onCopy={handleOnCopy}
+          text={"https://kaspi.kz/shop/p/-" + data.suk + "/?m=" + storeId}
+        >
+          <div className={cl.copy}></div>
+        </CopyToClipboard>
       </div>
       <div className={cl.model}>{data.brand + " " + data.model}</div>
       <div className={cl.category}>
