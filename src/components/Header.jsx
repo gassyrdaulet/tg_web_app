@@ -54,9 +54,13 @@ export default function header({
       )}
       {infoButton ? (
         <span className={cl.username}>
-          <Link className={cl.link} to="/">
-            Назад
-          </Link>
+          {goBack ? (
+            <Link className={cl.link} to="/">
+              Назад
+            </Link>
+          ) : (
+            ""
+          )}
           <p>
             {user
               ? user.username.length > 15

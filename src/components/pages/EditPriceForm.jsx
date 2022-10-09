@@ -110,7 +110,7 @@ export default function EditPriceForm() {
 
   return (
     <div className={cl.NewPrice}>
-      <Header searchable={false} infoButton={true} />
+      <Header goBack={true} searchable={false} infoButton={true} />
       <div className={cl.pageTitle}>
         <p>Страница редактирования прайса.</p>
         <p>Все поля обязательны.</p>
