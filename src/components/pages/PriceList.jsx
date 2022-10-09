@@ -84,7 +84,6 @@ export default function Pricelist() {
     const data = {
       method: "activate",
       id: getMarkedIdsArray(),
-      checkedPrices,
     };
     tg.sendData(JSON.stringify(data));
   };
@@ -502,7 +501,7 @@ export default function Pricelist() {
                 "Вы уверены что хотите активировать все выбранные прайсы?",
                 (pressed) => {
                   if (pressed) {
-                    deactivate();
+                    activate();
                   }
                 }
               );
@@ -516,7 +515,7 @@ export default function Pricelist() {
                 "Вы уверены что хотите деактивировать все выбранные прайсы?",
                 (pressed) => {
                   if (pressed) {
-                    activate();
+                    deactivate();
                   }
                 }
               );
