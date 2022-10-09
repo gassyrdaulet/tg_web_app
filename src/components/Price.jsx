@@ -19,11 +19,11 @@ export default function Price({
   const { tg } = useTelegram();
 
   const activate = () => {
-    const data = {
+    const telegramData = {
       method: "activate",
       id: [data.id],
     };
-    tg.sendData(JSON.stringify(data));
+    tg.sendData(JSON.stringify(telegramData));
   };
 
   const deactivate = () => {
