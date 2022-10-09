@@ -48,7 +48,6 @@ export default function Price({
         <a href={data.url}>{data.suk}</a>
         <CopyToClipboard
           onCopy={() => {
-            handleOnCopy();
             handleOnCopyTest();
           }}
           text={"https://kaspi.kz/shop/p/-" + data.suk + "/?m=" + storeId}

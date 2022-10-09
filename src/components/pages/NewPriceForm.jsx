@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import cl from "./styles/newpriceform.module.css";
 import { useInput } from "../../hooks/useInput";
 import MyInput from "../UI/inputs/MyInput";
@@ -56,6 +56,31 @@ export default function NewPriceForm() {
   const { tg } = useTelegram();
   const showHintBtn = true;
 
+  const onSendData = useCallback(() => {
+    const data = {
+      method: "new",
+      suk: sku,
+      suk2: name,
+      model,
+      brand,
+      category,
+      minprice: minPrice,
+      availability: pp1ch,
+      availability2: pp2ch,
+      availability3: pp3ch,
+      availability4: pp4ch,
+      availability5: pp5ch,
+      maxprice: maxPrice,
+    };
+    tg.sendData(JSON.stringify(data));
+  });
+
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, []);
   useEffect(() => {
     if (pp1ch || pp2ch || pp3ch || pp4ch || pp5ch) {
       setIsAvailabilityError(false);
