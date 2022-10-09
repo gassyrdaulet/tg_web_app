@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import cl from "./styles/header.module.css";
 import { useTelegram } from "../hooks/useTelegram";
 import MyInputSearch from "../components/UI/inputs/MyInputSearch.jsx";
+import { Link } from "react-router-dom";
 
 export default function header({
+  goBack = false,
   searchValue = null,
   setSearchValue = null,
   searchable = true,
@@ -52,6 +54,9 @@ export default function header({
       )}
       {infoButton ? (
         <span className={cl.username}>
+          <Link className={cl.link} to="/">
+            Назад
+          </Link>
           <p>
             {user
               ? user.username.length > 15

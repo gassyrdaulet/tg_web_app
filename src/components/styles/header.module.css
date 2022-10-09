@@ -97,6 +97,14 @@
 .closebutton::after {
   transform: rotate(-45deg);
 }
+.link {
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  color: var(--tg-theme-link-color);
+  text-decoration: none;
+  font-size: 14px;
+}
 .infoButton {
   cursor: pointer;
   box-sizing: border-box;
