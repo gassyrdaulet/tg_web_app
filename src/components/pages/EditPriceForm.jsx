@@ -76,10 +76,10 @@ export default function EditPriceForm() {
     minPrice.setValue(result.minprice ? result.minprice : "");
     maxPrice.setValue(result.maxprice ? result.maxprice : "");
     setpp1ch(result.availability?.$.available === "yes");
-    setpp2ch(result.availability?.$.available2 === "yes");
-    setpp3ch(result.availability?.$.available3 === "yes");
-    setpp4ch(result.availability?.$.available4 === "yes");
-    setpp5ch(result.availability?.$.available5 === "yes");
+    setpp2ch(result.availability2?.$.available === "yes");
+    setpp3ch(result.availability3?.$.available === "yes");
+    setpp4ch(result.availability4?.$.available === "yes");
+    setpp5ch(result.availability5?.$.available === "yes");
   }, [result]);
   useEffect(() => {
     if (pp1ch || pp2ch || pp3ch || pp4ch || pp5ch) {
