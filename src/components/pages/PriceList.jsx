@@ -13,6 +13,7 @@ import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import ButtonRound from "../UI/buttons/ButtonRound.jsx";
 import debounce from "lodash.debounce";
+import { useTelegram } from "../../hooks/useTelegram";
 
 export default function Pricelist() {
   const fromId = "767355250";
@@ -60,10 +61,12 @@ export default function Pricelist() {
     label: "Сперва новые",
   });
 
+  const { tg } = useTelegram();
+
   const deactivate = () => {
     const data = {
       method: "activation",
-      checkedPrices: "ss",
+      checkedPrices,
     };
     tg.sendData(JSON.stringify(data));
   };
