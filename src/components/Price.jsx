@@ -144,7 +144,20 @@ export default function Price({
           <ButtonRound onClick={data.activated ? deactivate : activate}>
             {data.activated === "yes" ? "Деакт." : "Актив."}
           </ButtonRound>
-          <ButtonRound onClick={deleteprice}>Удал.</ButtonRound>
+          <ButtonRound
+            onClick={() =>
+              tg.showConfirm(
+                "Вы уверены что хотите удалить этот (" + data.id + ") прайс? ",
+                (pressed) => {
+                  if (pressed) {
+                    deleteprice();
+                  }
+                }
+              )
+            }
+          >
+            Удал.
+          </ButtonRound>
           <ButtonRound
             onClick={() => {
               router("/edit/" + data.id);
