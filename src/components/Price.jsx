@@ -27,11 +27,19 @@ export default function Price({
   };
 
   const deactivate = () => {
-    const data = {
+    const telegramData = {
       method: "deactivate",
       id: [data.id],
     };
-    tg.sendData(JSON.stringify(data));
+    tg.sendData(JSON.stringify(telegramData));
+  };
+
+  const deleteprice = () => {
+    const telegramData = {
+      method: "delete",
+      id: [data.id],
+    };
+    tg.sendData(JSON.stringify(telegramData));
   };
 
   const handleOnCopyTest = () => {
@@ -136,7 +144,7 @@ export default function Price({
           <ButtonRound onClick={data.activated ? deactivate : activate}>
             {data.activated === "yes" ? "Деакт." : "Актив."}
           </ButtonRound>
-          <ButtonRound>Удал.</ButtonRound>
+          <ButtonRound onClick={deleteprice}>Удал.</ButtonRound>
           <ButtonRound
             onClick={() => {
               router("/edit/" + data.id);
