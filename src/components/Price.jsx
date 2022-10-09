@@ -147,7 +147,9 @@ export default function Price({
           <ButtonRound
             onClick={() =>
               tg.showConfirm(
-                "Вы уверены что хотите удалить этот (" + data.id + ") прайс? ",
+                "Вы уверены что хотите удалить этот (" +
+                  `"${data.model}"` +
+                  ") прайс? ",
                 (pressed) => {
                   if (pressed) {
                     deleteprice();
