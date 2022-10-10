@@ -7,6 +7,7 @@ import { useTelegram } from "../../hooks/useTelegram.js";
 import Header from "../Header";
 import questionmark from "../../img/questionmark.svg";
 import MyCheckBox from "../UI/inputs/MyCheckBox";
+import { newPrice } from "../../API/PricesService.js";
 
 export default function NewPriceForm() {
   const { props: skuProps, ...sku } = useInput(
@@ -53,11 +54,11 @@ export default function NewPriceForm() {
   const [arePricesError, setArePricesError] = useState(false);
   const [isAvailabilityError, setIsAvailabilityError] = useState(false);
 
-  const { tg } = useTelegram();
+  const { tg, queryId, user } = useTelegram();
   const showHintBtn = true;
 
-  const onSendData = useCallback(() => {
-    const data = {
+  const onSendData = useCallback(async () => {
+    const telegramData = {
       method: "new",
       suk: skuProps.value,
       suk2: nameProps.value,
@@ -72,7 +73,8 @@ export default function NewPriceForm() {
       availability5: pp5ch,
       maxprice: maxPriceProps.value,
     };
-    tg.sendData(JSON.stringify(data));
+    await newPrice(user.id, telegramData, queryId);
+    // tg.sendData(JSON.stringify(telegramData));
   }, [
     skuProps.value,
     nameProps.value,

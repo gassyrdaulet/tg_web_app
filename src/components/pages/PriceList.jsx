@@ -5,6 +5,9 @@ import {
   getAllPrices,
   getBrands,
   getCategories,
+  activatePrice,
+  deactivatePrice,
+  deletePrice,
 } from "../../API/PricesService";
 import Prices from "../Prices.jsx";
 import Header from "../Header.jsx";
@@ -16,7 +19,6 @@ import debounce from "lodash.debounce";
 import { useTelegram } from "../../hooks/useTelegram";
 
 export default function Pricelist() {
-  const fromId = "767355250";
   const storeId = "15503068";
   const [copied, setCopied] = useState(false);
   const [prices, setPrices] = useState([]);
@@ -61,7 +63,7 @@ export default function Pricelist() {
     label: "Сперва новые",
   });
 
-  const { tg } = useTelegram();
+  const { tg, queryId, user } = useTelegram();
 
   const getMarkedIdsArray = () => {
     let array = [];
@@ -73,26 +75,29 @@ export default function Pricelist() {
     return array;
   };
 
-  const deactivate = () => {
-    const data = {
+  const deactivate = async () => {
+    const telegramData = {
       method: "deactivate",
       id: getMarkedIdsArray(),
     };
-    tg.sendData(JSON.stringify(data));
+    await deactivatePrice(user.id, telegramData, queryId);
+    // tg.sendData(JSON.stringify(telegramData));
   };
-  const activate = () => {
-    const data = {
+  const activate = async () => {
+    const telegramData = {
       method: "activate",
       id: getMarkedIdsArray(),
     };
-    tg.sendData(JSON.stringify(data));
+    await activatePrice(user.id, telegramData, queryId);
+    // tg.sendData(JSON.stringify(telegramData));
   };
-  const deleteprices = () => {
-    const data = {
+  const deleteprices = async () => {
+    const telegramData = {
       method: "delete",
       id: getMarkedIdsArray(),
     };
-    tg.sendData(JSON.stringify(data));
+    await deletePrice(user.id, telegramData, queryId);
+    // tg.sendData(JSON.stringify(telegramData));
   };
 
   const handleOnCopy = () => {

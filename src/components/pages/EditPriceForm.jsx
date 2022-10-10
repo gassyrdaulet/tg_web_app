@@ -7,7 +7,7 @@ import { useTelegram } from "../../hooks/useTelegram.js";
 import Header from "../Header";
 import questionmark from "../../img/questionmark.svg";
 import MyCheckBox from "../UI/inputs/MyCheckBox.jsx";
-import { getPriceById } from "../../API/PricesService.js";
+import { getPriceById, editPrice } from "../../API/PricesService.js";
 import { useParams } from "react-router-dom";
 
 export default function EditPriceForm() {
@@ -58,11 +58,11 @@ export default function EditPriceForm() {
 
   const fromId = "767355250";
   const params = useParams();
-  const { tg } = useTelegram();
+  const { tg, queryId, user } = useTelegram();
   const showHintBtn = true;
 
-  const onSendData = useCallback(() => {
-    const data = {
+  const onSendData = useCallback(async () => {
+    const telegramData = {
       method: "edit",
       id: params.id,
       suk: skuProps.value,
@@ -78,7 +78,8 @@ export default function EditPriceForm() {
       availability5: pp5ch,
       maxprice: maxPriceProps.value,
     };
-    tg.sendData(JSON.stringify(data));
+    await editPrice(user.id, telegramData, queryId);
+    // tg.sendData(JSON.stringify(telegramData));
   }, [
     skuProps.value,
     nameProps.value,

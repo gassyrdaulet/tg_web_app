@@ -6,6 +6,11 @@ import MyCheckBox from "./UI/inputs/MyCheckBox";
 import { useNavigate } from "react-router-dom";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { useTelegram } from "../hooks/useTelegram";
+import {
+  activatePrice,
+  deactivatePrice,
+  deletePrice,
+} from "../API/PricesService.js";
 
 export default function Price({
   handleOnCopy,
@@ -16,30 +21,31 @@ export default function Price({
   storeId,
 }) {
   const router = useNavigate();
-  const { tg } = useTelegram();
+  const { tg, queryId, user } = useTelegram();
 
-  const activate = () => {
+  const activate = async () => {
     const telegramData = {
       method: "activate",
       id: [data.id],
     };
-    tg.sendData(JSON.stringify(telegramData));
+    await activatePrice(user.id, telegramData, queryId);
+    // tg.sendData(JSON.stringify(telegramData));
   };
 
-  const deactivate = () => {
+  const deactivate = async () => {
     const telegramData = {
       method: "deactivate",
       id: [data.id],
     };
-    tg.sendData(JSON.stringify(telegramData));
+    await deactivatePrice(user.id, telegramData, queryId);
   };
 
-  const deleteprice = () => {
+  const deleteprice = async () => {
     const telegramData = {
       method: "delete",
       id: [data.id],
     };
-    tg.sendData(JSON.stringify(telegramData));
+    await deletePrice(user.id, telegramData, queryId);
   };
 
   const handleOnCopyTest = () => {

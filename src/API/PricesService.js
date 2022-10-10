@@ -1,6 +1,5 @@
 import axios from "axios";
-const serverURL = "https://jackmarket.kz:2222";
-const initData = window.Telegram?.WebApp?.initDAta;
+const serverURL = "https://jackmarket.kz:2222/api";
 
 export const getPriceById = async (fromId, id) => {
   const { data } = await axios.get(serverURL + "/price/" + id, {
@@ -9,6 +8,46 @@ export const getPriceById = async (fromId, id) => {
     },
   });
   return data[0];
+};
+
+export const newPrice = async (fromId, data, queryId) => {
+  await axios.post(serverURL + "/new", {
+    fromId,
+    queryId,
+    data,
+  });
+};
+
+export const editPrice = async (fromId, data, queryId) => {
+  await axios.post(serverURL + "/edit", {
+    fromId,
+    queryId,
+    data,
+  });
+};
+
+export const deletePrice = async (fromId, data, queryId) => {
+  await axios.post(serverURL + "/delete", {
+    fromId,
+    queryId,
+    data,
+  });
+};
+
+export const deactivatePrice = async (fromId, data, queryId) => {
+  await axios.post(serverURL + "/deactivate", {
+    fromId,
+    queryId,
+    data,
+  });
+};
+
+export const activatePrice = async (fromId, data, queryId) => {
+  await axios.post(serverURL + "/activate", {
+    fromId,
+    queryId,
+    data,
+  });
 };
 
 export const getAllPrices = async (fromId) => {
@@ -32,6 +71,15 @@ export const getCategories = async (searchValue, fromId) => {
   const { data } = await axios.get(serverURL + "/categories", {
     params: {
       searchValue,
+      fromId,
+    },
+  });
+  return data;
+};
+
+export const getStoreName = async (fromId) => {
+  const { data } = await axios.get(serverURL + "/store", {
+    params: {
       fromId,
     },
   });
