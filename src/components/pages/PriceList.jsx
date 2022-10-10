@@ -8,6 +8,7 @@ import {
   activatePrice,
   deactivatePrice,
   deletePrice,
+  getStoreId,
 } from "../../API/PricesService";
 import Prices from "../Prices.jsx";
 import Header from "../Header.jsx";
@@ -18,8 +19,7 @@ import ButtonRound from "../UI/buttons/ButtonRound.jsx";
 import debounce from "lodash.debounce";
 import { useTelegram } from "../../hooks/useTelegram";
 
-export default function Pricelist() {
-  const storeId = "15503068";
+export default async function Pricelist() {
   const [copied, setCopied] = useState(false);
   const [prices, setPrices] = useState([]);
   const [checkedPrices, setCheckedPrices] = useState({});
@@ -64,7 +64,7 @@ export default function Pricelist() {
   });
 
   const { tg, queryId, user } = useTelegram();
-
+  const storeId = await getStoreId(user.id);
   const getMarkedIdsArray = () => {
     let array = [];
     for (let key in checkedPrices) {

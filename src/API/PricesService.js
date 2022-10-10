@@ -77,7 +77,7 @@ export const getCategories = async (searchValue, fromId) => {
   return data;
 };
 
-export const getStoreName = async (fromId) => {
+export const getStoreId = async (fromId) => {
   const { data } = await axios.get(serverURL + "/store", {
     params: {
       fromId,
