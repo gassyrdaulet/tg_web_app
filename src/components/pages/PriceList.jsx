@@ -118,17 +118,17 @@ export default function Pricelist() {
   };
 
   const _searchBrands = (inputValue, callback) => {
-    getBrands(inputValue, fromId).then((resp) => callback(resp));
+    getBrands(inputValue, user.id).then((resp) => callback(resp));
   };
   const _searchCategories = (inputValue, callback) => {
-    getCategories(inputValue, fromId).then((resp) => callback(resp));
+    getCategories(inputValue, user.id).then((resp) => callback(resp));
   };
   const searchBrands = debounce(_searchBrands, 800);
   const searchCategories = debounce(_searchCategories, 800);
 
   const fetchPrices = async () => {
     try {
-      setPrices(await getAllPrices(fromId));
+      setPrices(await getAllPrices(user.id));
     } catch (e) {
       console.log(e);
     }
