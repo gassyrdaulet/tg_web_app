@@ -13,7 +13,9 @@ export default function ({
   return (
     <div className={cl.Prices}>
       <div className={cl.resultsum}>
-        <p>Всего результатов: {data.length}</p>
+        <p>
+          Всего результатов: {data.length} {storeId}
+        </p>
         <p>Отмечено: {markedSum}</p>
       </div>
       {data.map((price, index) => (
