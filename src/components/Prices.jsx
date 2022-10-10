@@ -14,7 +14,7 @@ export default function ({
     <div className={cl.Prices}>
       <div className={cl.resultsum}>
         <p>
-          Всего результатов: {data.length} {storeId}
+          Всего результатов: {data.length} {typeof storeId}
         </p>
         <p>Отмечено: {markedSum}</p>
       </div>

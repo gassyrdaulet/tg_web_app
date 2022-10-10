@@ -21,7 +21,7 @@ import { useTelegram } from "../../hooks/useTelegram";
 
 export default function Pricelist() {
   const [copied, setCopied] = useState(false);
-  const [storeId, setStoreId] = useState(false);
+  const [storeId, setStoreId] = useState("");
   const [prices, setPrices] = useState([]);
   const [checkedPrices, setCheckedPrices] = useState({});
   const [markAll, setMarkAll] = useState(false);
