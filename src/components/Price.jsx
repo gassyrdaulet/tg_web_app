@@ -147,7 +147,9 @@ export default function Price({
           </p>
         </div>
         <div className={cl.buttons}>
-          <ButtonRound onClick={data.activated ? deactivate : activate}>
+          <ButtonRound
+            onClick={data.activated === "yes" ? deactivate : activate}
+          >
             {data.activated === "yes" ? "Деакт." : "Актив."}
           </ButtonRound>
           <ButtonRound
