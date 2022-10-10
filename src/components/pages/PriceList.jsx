@@ -19,8 +19,9 @@ import ButtonRound from "../UI/buttons/ButtonRound.jsx";
 import debounce from "lodash.debounce";
 import { useTelegram } from "../../hooks/useTelegram";
 
-export default async function Pricelist() {
+export default function Pricelist() {
   const [copied, setCopied] = useState(false);
+  const [storeId, setStoreId] = useState(false);
   const [prices, setPrices] = useState([]);
   const [checkedPrices, setCheckedPrices] = useState({});
   const [markAll, setMarkAll] = useState(false);
@@ -63,8 +64,11 @@ export default async function Pricelist() {
     label: "Сперва новые",
   });
 
+  const fetchStoreId = async () => {
+    setStoreId(await getStoreId(user.id));
+  };
+
   const { tg, queryId, user } = useTelegram();
-  const storeId = await getStoreId(user.id);
   const getMarkedIdsArray = () => {
     let array = [];
     for (let key in checkedPrices) {
@@ -352,6 +356,7 @@ export default async function Pricelist() {
   ]);
   useEffect(() => {
     fetchPrices();
+    fetchStoreId();
   }, []);
   useEffect(() => {
     const temp = {};
