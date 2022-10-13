@@ -244,11 +244,9 @@ export default function NewPriceForm() {
           </span>
           <span className={cl.errors}>
             <ErrorList>
-              {arePricesError
+              {(arePricesError
                 ? "Минимальная цена не может быть больше максимальной или быть ей равной.\n"
-                : "" + minPrice.isDirty
-                ? minPrice.errorText
-                : ""}
+                : "") + (minPrice.isDirty ? minPrice.errorText : "")}
             </ErrorList>
           </span>
         </div>
@@ -265,11 +263,9 @@ export default function NewPriceForm() {
           </span>
           <span className={cl.errors}>
             <ErrorList>
-              {arePricesError
+              {(arePricesError
                 ? "Минимальная цена не может быть больше максимальной или быть ей равной.\n"
-                : "" + maxPrice.isDirty
-                ? maxPrice.errorText
-                : ""}
+                : "") + (maxPrice.isDirty ? maxPrice.errorText : "")}
             </ErrorList>
           </span>
         </div>
