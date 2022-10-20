@@ -6,6 +6,7 @@ export const useValidation = (value, validations) => {
   const [maxLengthError, setMaxLengthError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [cellPhoneError, setCellPhoneError] = useState(false);
   const [errorText, setErrorText] = useState("");
 
   useEffect(() => {
@@ -13,11 +14,25 @@ export const useValidation = (value, validations) => {
     let text = "";
     for (const validation in validations) {
       switch (validation) {
+        case "cellPhone":
+          if (
+            !value.match(
+              /^((8|\+374|\+994|\+995|\+375|\+7|\+380|\+38|\+996|\+998|\+993)[\- ]?)?\(?\d{3,5}\)?[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}(([\- ]?\d{1})?[\- ]?\d{1})?$/i
+            )
+          ) {
+            setCellPhoneError(true);
+            text += "Неверный  формат номера телефона!\n";
+          } else {
+            setCellPhoneError(false);
+          }
+          break;
         case "password":
-          if (!value.match(/[A-z.!@0-9]/g)) {
+          if (
+            !value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/i)
+          ) {
             setPasswordError(true);
             text +=
-              'Пароль должен состоять только из английских букв, цифр и символов "." , "!" , "@".\n';
+              "Пароль должен состоять только из английских букв и цифр. Пароль должен содержать как минимум одну заглавную букву, одну строчную, и одну цифру.\n";
           } else {
             setPasswordError(false);
           }

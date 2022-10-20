@@ -13,6 +13,12 @@ export const useInput = (initialValue, validations, limiter) => {
         .replace(/-+/gi, "-")
         .substring(0, 99);
       setValue(temp);
+    } else if (limiter === "name") {
+      temp = e.target.value
+        .replace(/\s|[^A-zА-яЁё\-]/gi, "")
+        .replace(/-+/gi, "-")
+        .substring(0, 15);
+      setValue(temp);
     } else if (limiter === "tel") {
       temp = e.target.value
         .replace(/\s|[^0-9-+()]/gi, "")
@@ -23,7 +29,7 @@ export const useInput = (initialValue, validations, limiter) => {
         .substring(0, 13);
       setValue(temp);
     } else if (limiter === "number") {
-      temp = e.target.value.replace(/^0{1,}|[^0-9]/gim, "").substring(0, 7);
+      temp = e.target.value.replace(/^0{1,}|[^0-9]/gim, "").substring(0, 20);
       setValue(temp);
     } else if (limiter === "text") {
       temp = e.target.value
