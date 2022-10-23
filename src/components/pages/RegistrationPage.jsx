@@ -108,8 +108,7 @@ export default function RegistrationPage() {
       store_id: storeIdProps.value,
       available_storages: available_storages.toLocaleString(),
     };
-    console.log(telegramData);
-    // await newUser(user.id, telegramData, queryId);
+    await newUser(user.id, telegramData, queryId);
     // tg.sendData(JSON.stringify(telegramData));
   }, [
     cellPhoneProps.value,
