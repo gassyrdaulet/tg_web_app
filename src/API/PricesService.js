@@ -85,3 +85,11 @@ export const getStoreId = async (fromId) => {
   });
   return data;
 };
+
+export const newUser = async (fromId, data, queryId) => {
+  await axios.post(serverURL + "/auth/registration", {
+    fromId,
+    queryId,
+    data,
+  });
+};

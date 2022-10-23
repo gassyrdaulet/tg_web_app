@@ -7,8 +7,7 @@ import { useTelegram } from "../../hooks/useTelegram.js";
 import Header from "../Header";
 import questionmark from "../../img/questionmark.svg";
 import MyCheckBox from "../UI/inputs/MyCheckBox.jsx";
-import { getPriceById, editPrice } from "../../API/PricesService.js";
-import { useParams } from "react-router-dom";
+import { newUser } from "../../API/PricesService.js";
 import Select from "react-select";
 import cities from "../../cities.json";
 
@@ -27,6 +26,11 @@ export default function RegistrationPage() {
     "",
     { isEmpty: true, minLength: 8, maxLength: 20, password: true },
     "text"
+  );
+  const { props: dampProps, ...damp } = useInput(
+    "",
+    { isEmpty: true, minLength: 1, maxLength: 3 },
+    "number"
   );
   const { props: storeNameProps, ...storeName } = useInput(
     "",
@@ -76,7 +80,57 @@ export default function RegistrationPage() {
     }),
     dropdownIndicatorStyles: () => ({}),
   };
+  const onSendData = useCallback(async () => {
+    const available_storages = [];
+    if (pp1ch) {
+      available_storages.push(1);
+    }
+    if (pp2ch) {
+      available_storages.push(2);
+    }
+    if (pp3ch) {
+      available_storages.push(3);
+    }
+    if (pp4ch) {
+      available_storages.push(4);
+    }
+    if (pp5ch) {
+      available_storages.push(5);
+    }
+    const telegramData = {
+      telegram_id: user?.id,
+      telephone_number: cellPhoneProps.value,
+      name: nameProps.value,
+      password: passProps.value,
+      damp: dampProps.value,
+      city: city.value,
+      store_name: storeNameProps.value,
+      store_id: storeIdProps.value,
+      available_storages: available_storages.toLocaleString(),
+    };
+    console.log(telegramData);
+    // await newUser(user.id, telegramData, queryId);
+    // tg.sendData(JSON.stringify(telegramData));
+  }, [
+    cellPhoneProps.value,
+    nameProps.value,
+    passProps.value,
+    city,
+    storeNameProps.value,
+    storeIdProps.value,
+    pp1ch,
+    pp2ch,
+    pp3ch,
+    pp4ch,
+    pp5ch,
+  ]);
 
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, [onSendData]);
   useEffect(() => {
     if (pp1ch || pp2ch || pp3ch || pp4ch || pp5ch) {
       setIsAvailabilityError(false);
@@ -130,6 +184,7 @@ export default function RegistrationPage() {
       <Header searchable={false} infoButton={true} />
       <div className={cl.pageTitle}>
         <p>Страница регистарции.</p>
+        <button onClick={onSendData}>CLICK IT</button>
         <p>Все поля обязательны.</p>
         <p>
           После полного заполнения внизу <br /> появится кнопка регистрации.
@@ -203,6 +258,25 @@ export default function RegistrationPage() {
           </span>
           <span className={cl.errors}>
             <ErrorList>{city.isDirty ? city.errorText : ""}</ErrorList>
+          </span>
+        </div>
+        <div className={cl.inputItem}>
+          <span className={cl.hint}>
+            {showHintBtn ? <img src={questionmark} /> : ""}
+          </span>
+          <span className={cl.inputWrapper}>
+            <div className={cl.inputTitle}>Демп:</div>
+            <div className={cl.input}>
+              <MyInput
+                {...dampProps}
+                placeholder="Не больше 999"
+                type="text"
+                inputMode="numeric"
+              />
+            </div>
+          </span>
+          <span className={cl.errors}>
+            <ErrorList>{damp.isDirty ? damp.errorText : ""}</ErrorList>
           </span>
         </div>
         <div className={cl.inputItem}>
