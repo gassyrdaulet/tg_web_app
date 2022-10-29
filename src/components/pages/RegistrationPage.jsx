@@ -98,7 +98,7 @@ export default function RegistrationPage() {
       available_storages.push(5);
     }
     const telegramData = {
-      telegram_id: user ? user.id : "noid",
+      telegram_id: user ? user.id : 0,
       telephone_number: cellPhoneProps.value,
       name: nameProps.value,
       password: passProps.value,
@@ -108,7 +108,7 @@ export default function RegistrationPage() {
       store_id: storeIdProps.value,
       available_storages: available_storages.toLocaleString(),
     };
-    await newUser(user ? user.id : "noid", telegramData, queryId);
+    await newUser(user ? user.id : 0, telegramData, queryId);
     // tg.sendData(JSON.stringify(telegramData));
   }, [
     cellPhoneProps.value,
