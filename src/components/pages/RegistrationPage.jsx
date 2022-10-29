@@ -98,7 +98,7 @@ export default function RegistrationPage() {
       available_storages.push(5);
     }
     const telegramData = {
-      telegram_id: user?.id,
+      telegram_id: user ? user.id : "noid",
       telephone_number: cellPhoneProps.value,
       name: nameProps.value,
       password: passProps.value,
