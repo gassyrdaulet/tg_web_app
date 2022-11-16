@@ -183,7 +183,7 @@ export default function RegistrationPage() {
       <Header searchable={false} infoButton={true} />
       <div className={cl.pageTitle}>
         <p>Страница регистарции.</p>
-        <button onClick={onSendData}>CLICK IT</button>
+        {/* <button onClick={onSendData}>CLICK IT</button> */}
         <p>Все поля обязательны.</p>
         <p>
           После полного заполнения внизу <br /> появится кнопка регистрации.
@@ -197,12 +197,7 @@ export default function RegistrationPage() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>Введите номер телефона:</div>
             <div className={cl.input}>
-              <MyInput
-                {...cellPhoneProps}
-                placeholder="87*********"
-                inputMode="tel"
-                type="text"
-              />
+              <MyInput {...cellPhoneProps} inputMode="tel" type="text" />
             </div>
           </span>
           <span className={cl.errors}>
@@ -218,7 +213,7 @@ export default function RegistrationPage() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>Введите свое имя:</div>
             <div className={cl.input}>
-              <MyInput {...nameProps} type="text" placeholder="Арсен" />
+              <MyInput {...nameProps} type="text" />
             </div>
           </span>
           <span className={cl.errors}>
@@ -232,7 +227,7 @@ export default function RegistrationPage() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>Введите свой новый пароль:</div>
             <div className={cl.input}>
-              <MyInput {...passProps} placeholder="Qwerty123" type="text" />
+              <MyInput {...passProps} type="text" />
             </div>
           </span>
           <span className={cl.errors}>
@@ -248,7 +243,6 @@ export default function RegistrationPage() {
             <div className={cl.input}>
               <Select
                 defaultValue={city}
-                placeholder="Выберите..."
                 onChange={(value) => setCity(value)}
                 styles={selectStyle}
                 options={cityOptions}
@@ -266,12 +260,7 @@ export default function RegistrationPage() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>Демп:</div>
             <div className={cl.input}>
-              <MyInput
-                {...dampProps}
-                placeholder="Не больше 999"
-                type="text"
-                inputMode="numeric"
-              />
+              <MyInput {...dampProps} type="text" inputMode="numeric" />
             </div>
           </span>
           <span className={cl.errors}>
@@ -285,11 +274,7 @@ export default function RegistrationPage() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>Название магазина:</div>
             <div className={cl.input}>
-              <MyInput
-                {...storeNameProps}
-                placeholder="МойМагазин"
-                type="text"
-              />
+              <MyInput {...storeNameProps} type="text" />
             </div>
           </span>
           <span className={cl.errors}>
@@ -305,12 +290,7 @@ export default function RegistrationPage() {
           <span className={cl.inputWrapper}>
             <div className={cl.inputTitle}>ИД магазина:</div>
             <div className={cl.input}>
-              <MyInput
-                {...storeIdProps}
-                placeholder="51546987"
-                inputMode="numeric"
-                type="text"
-              />
+              <MyInput {...storeIdProps} inputMode="numeric" type="text" />
             </div>
           </span>
           <span className={cl.errors}>
