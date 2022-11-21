@@ -49,6 +49,7 @@ export default function RegistrationPage() {
   const [pp4ch, setpp4ch] = useState(false);
   const [pp5ch, setpp5ch] = useState(false);
   const [city, setCity] = useState("");
+  const [cityName, setCityName] = useState("");
   const [isAvailabilityError, setIsAvailabilityError] = useState(false);
   const [cityOptions, setCityOptions] = useState([]);
   const showHintBtn = true;
@@ -161,6 +162,12 @@ export default function RegistrationPage() {
     damp.setValue(userInfo.damp ? userInfo.damp : "");
     storeName.setValue(userInfo.store_name ? userInfo.store_name : "");
     storeId.setValue(userInfo.store_id ? userInfo.store_id : "");
+    for (let city of cities.data) {
+      if (city.attributes.code === userInfo.city) {
+        setCityName(city.attributes.name);
+        break;
+      }
+    }
     if (!userInfo.available_storages) {
       return;
     }
@@ -282,7 +289,9 @@ export default function RegistrationPage() {
             {showHintBtn ? <img src={questionmark} /> : ""}
           </span>
           <span className={cl.inputWrapper}>
-            <div className={cl.inputTitle}>Выберите город:</div>
+            <div className={cl.inputTitle}>
+              Выберите город: <br /> (Текущий: {cityName}){" "}
+            </div>
             <div className={cl.input}>
               <Select
                 defaultValue={city}
