@@ -37,6 +37,7 @@ export const useValidation = (value, validations) => {
             setPasswordError(false);
           }
           break;
+
         case "email":
           if (
             !value
@@ -73,6 +74,20 @@ export const useValidation = (value, validations) => {
           } else {
             setEmpty(true);
             text += "Поле не может быть пустым.\n";
+          }
+          break;
+        case "editpassword":
+          if (value === "") {
+            setPasswordError(false);
+            setEmpty(false);
+          } else if (
+            !value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/i)
+          ) {
+            setPasswordError(true);
+            text +=
+              "Пароль должен состоять только из английских букв и цифр. Пароль должен содержать как минимум одну заглавную букву, одну строчную, и одну цифру.\n";
+          } else {
+            setPasswordError(false);
           }
           break;
         case "noValidation":

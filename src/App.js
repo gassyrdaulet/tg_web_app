@@ -7,6 +7,7 @@ import NewPriceForm from "./components/pages/NewPriceForm.jsx";
 import EditPriceForm from "./components/pages/EditPriceForm.jsx";
 import Error from "./components/pages/Error.jsx";
 import RegistrationPage from "./components/pages/RegistrationPage.jsx";
+import UserSettingsPage from "./components/pages/UserSettingsPage.jsx";
 import "./App.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path={"/new"} element={<NewPriceForm />} />
         <Route path={"/edit/:id"} element={<EditPriceForm />} />
         <Route path={"/register"} element={<RegistrationPage />} />
+        <Route path={"/settings"} element={<UserSettingsPage />} />
         <Route path={"/error"} element={<Error />} />
         <Route path={"/*"} element={<Navigate to="/error"></Navigate>} />
       </Routes>

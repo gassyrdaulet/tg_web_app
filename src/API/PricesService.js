@@ -93,3 +93,18 @@ export const newUser = async (fromId, data, queryId) => {
     data,
   });
 };
+
+export const saveUser = async (fromId, data, queryId) => {
+  await axios.post(serverURL + "/auth/setting", {
+    fromId,
+    queryId,
+    data,
+  });
+};
+
+export const getUser = async (fromId) => {
+  const { data: result } = await axios.post(serverURL + "/auth/users", {
+    fromId,
+  });
+  return result;
+};
