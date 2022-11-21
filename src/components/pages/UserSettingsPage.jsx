@@ -142,7 +142,7 @@ export default function RegistrationPage() {
 
   useEffect(() => {
     tg.MainButton.setParams({
-      text: "Зарегистрироваться",
+      text: "Сохранить",
     });
   }, []);
 
@@ -211,6 +211,7 @@ export default function RegistrationPage() {
     cellPhone.inValid,
     name.inValid,
     pass.inValid,
+    damp.inValid,
     storeId.inValid,
     storeName.inValid,
     isAvailabilityError,
@@ -410,8 +411,6 @@ export default function RegistrationPage() {
           </span>
         </div>
       </div>
-
-      <div></div>
     </div>
   );
 }
