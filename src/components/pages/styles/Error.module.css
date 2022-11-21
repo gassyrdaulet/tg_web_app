@@ -1,0 +1,38 @@
+.Error {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(2, 38, 68);
+  color: rgb(239, 231, 231);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  text-align: start;
+  width: 200px;
+}
+.icon {
+  cursor: pointer;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 5px 15px;
+}
+.icon p {
+  margin-top: 5px;
+  text-decoration: underline;
+  color: rgb(239, 231, 231);
+}
